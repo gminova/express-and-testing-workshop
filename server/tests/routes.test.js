@@ -55,3 +55,15 @@ test("Check we are getting Bart name back", t=> {
     })
 
 })
+
+test("Check hobby is correct", t=>{
+    request(app)
+    .get("/facsters/bart/hobby")
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .end((err, res) => {
+        t.error(err)
+        t.equal(res.body[0].hobby, "Ninja training", "Bart should have ninja training as hobby" );
+        t.end();
+    })
+})
