@@ -67,3 +67,15 @@ test("Check hobby is correct", t=>{
         t.end();
     })
 })
+
+test("Check hobby is correct", t=>{
+    request(app)
+    .get("/facsters/bart/superpower")
+    .expect(200)
+    .expect("Content-Type", /json/)
+    .end((err, res) => {
+        t.error(err)
+        t.equal(res.body[0].superpower, "NodeBot!!", "Bart's superpower NodeBot!!" );
+        t.end();
+    })
+})
