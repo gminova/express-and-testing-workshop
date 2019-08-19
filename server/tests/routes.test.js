@@ -20,10 +20,10 @@ test("Check /facsters route is being served", t => {
 
 test("Check /factsers/ request returns an object", t => {
   request(app)
-    .get('/factsers')
+    .get('/facsters')
     .end((err, res) => {
       t.error(err)
-      t.deepEquals(typeof res.body, 'object', "Check /factsers/:name request should return a JSON file")
+      t.deepEquals(res.type, 'application/json', "Check /factsers/:name request should return a JSON file")
       t.end()
     })
 })
@@ -68,14 +68,14 @@ test("Check hobby is correct", t=>{
     })
 })
 
-test("Check hobby is correct", t=>{
+test("Check superpower is correct", t=>{
     request(app)
     .get("/facsters/bart/superpower")
     .expect(200)
     .expect("Content-Type", /json/)
     .end((err, res) => {
         t.error(err)
-        t.equal(res.body[0].superpower, "NodeBot!!", "Bart's superpower NodeBot!!" );
+        t.equal(res.body[0].superpower, "NodeBot!!", "Bart's superpower should be NodeBot!!" );
         t.end();
     })
 })
