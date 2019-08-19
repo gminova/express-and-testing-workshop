@@ -18,12 +18,12 @@ test("Check /facsters route is being served", t => {
     });
 });
 
-test("Check /factsers/ request returns an HTML file", t => {
+test("Check /factsers/ request returns an object", t => {
   request(app)
     .get('/factsers')
     .end((err, res) => {
       t.error(err)
-      t.equal(res.headers['content-type'], 'text/html; charset=utf-8', "Check /factsers/:name request should return a JSON file")
+      t.deepEquals(typeof res.body, 'object', "Check /factsers/:name request should return a JSON file")
       t.end()
     })
 })
