@@ -42,3 +42,16 @@ test("Check /factsers/new posts new user with firstname: Victor", t => {
       t.end()
     })
 })
+
+
+test("Check we are getting Bart name back", t=> {
+    request(app)
+    .get("/facsters/Bart")
+    .expect(200)
+    .end((err, res) =>{
+        t.error(err),
+        t.deepEqual(res.body, [ { cohort: 11, firstname: 'Bart', id: 5, surname: 'Bucknill' } ]);
+      t.end();
+    })
+
+})
