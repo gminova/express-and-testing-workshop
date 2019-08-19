@@ -27,3 +27,18 @@ test("Check /factsers/ request returns an object", t => {
       t.end()
     })
 })
+
+
+test("Check /factsers/new posts new user with firstname: Victor", t => {
+  const newFacster = { firstname: 'Victor', surname: 'Gigi', cohort: 17 };
+  request(app)
+    .post('/facster/new')
+    .send(newFacster)
+    .expect(201)
+    .expect('Content-Type', /json/)
+    .end((err, res) => {
+      t.error(err)
+      t.same(res.body[0].surname, 'Gigi', 'New factser name shoud be Gigi')
+      t.end()
+    })
+})
